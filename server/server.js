@@ -3,8 +3,11 @@ const app = express();
 const fs = require('fs');
 const path = require('path');
 const port = 3000;
+const cors = require('cors');
 
-app.use('/',express.static('public'));
+app.use(cors());
+
+// app.use('/',express.static('public'));
 
 app.get('/budget', (req, res) => {
 
@@ -14,7 +17,9 @@ app.get('/budget', (req, res) => {
             return res.status(404).send('Budget file are not found');
         }
         const mybudget = JSON.parse(data);
+        console.log(mybudget);
         res.json(mybudget);
+       
     });
 });
 
